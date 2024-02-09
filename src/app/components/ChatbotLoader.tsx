@@ -6,9 +6,7 @@ import PropertyPayload from "./PropertyDetails";
 const stringifyPayload = (payload: any) => {
   const payloadCopy = { ...payload };
   for (const key in payloadCopy) {
-    if (typeof payloadCopy[key] === "object") {
-      payloadCopy[key] = JSON.stringify(payloadCopy[key]);
-    }
+    payloadCopy[key] = JSON.stringify(payloadCopy[key]);
   }
   return payloadCopy;
 };
@@ -48,7 +46,7 @@ const ChatbotLoader = () => {
       script.onload = () => {
         scriptLoaded = true; // Set flag to true when script is loaded
         window.voiceflow.chat.load({
-          verify: { projectID: "65c28643f8f741f729ac81e7" },
+          verify: { projectID: "65c6565bab1977e17fe57e94" },
           url: "https://general-runtime.voiceflow.com",
           versionID: "production",
         });

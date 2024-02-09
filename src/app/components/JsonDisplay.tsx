@@ -1,7 +1,12 @@
 import React from "react";
 
 const RenderJson = ({ data, indent = 0 }: any) => {
-  delete data.intent;
+  // Check if data is an object and not null before attempting to delete a property
+  if (typeof data === "object" && data !== null) {
+    delete data.intent;
+  }
+
+  // Then proceed with the rest of the checks and rendering
   if (typeof data !== "object" || data === null) {
     return <span>{JSON.stringify(data)}</span>;
   }
