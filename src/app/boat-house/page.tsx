@@ -34,6 +34,7 @@ const BoatHouse = () => {
         </ul>
         <br />
         <p>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           For this demo, we've included the JSON of the property down below!
         </p>
 
