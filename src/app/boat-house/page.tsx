@@ -36,6 +36,19 @@ const BoatHouse = () => {
         <p>
           For this demo, we've included the JSON of the property down below!
         </p>
+
+        <p>
+          If you have an unexpected or negative experience, leave your feedback{" "}
+          <a
+            href="https://docs.google.com/spreadsheets/d/1wEQW6jaXRww33q0BNddRjIcqpMD8tT_OErQz7sSzxow/edit?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-500"
+          >
+            here
+          </a>
+          !
+        </p>
       </div>
 
       <JsonDisplay data={PropertyPayload} />
