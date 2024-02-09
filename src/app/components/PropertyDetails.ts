@@ -2,7 +2,7 @@ const PropertyPayload = {
   intent: {
     name: "initialize_property_information",
   },
-  current_property_details: JSON.stringify({
+  current_property_details: {
     UnitID: 4638,
     UnitNumber: "T11993",
     Name: "The Boat House",
@@ -24,7 +24,7 @@ const PropertyPayload = {
     CheckinOffice: null,
     ShowParking: false,
     Parking: null,
-  }),
+  },
   current_property_description:
     "The kitchen doors open to a dreamy covered porch with panoramic ocean views, perfect for enjoying a tall glass of sweet tea or afternoon cocktail.",
   current_property_ammenities: [
