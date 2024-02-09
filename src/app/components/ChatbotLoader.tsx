@@ -3,12 +3,21 @@ import React, { useEffect } from "react";
 
 import PropertyPayload from "./PropertyDetails";
 
+const stringifyPayload = (payload: any) => {
+  const payloadCopy = { ...payload };
+  for (const key in payloadCopy) {
+    if (typeof payloadCopy[key] === "object") {
+      payloadCopy[key] = JSON.stringify(payloadCopy[key]);
+    }
+  }
+  return payloadCopy;
+};
 const ChatbotLoader = () => {
   // Moved sendPayload outside of useEffect to keep it stable
   const sendPayload = () => {
     window.voiceflow.chat.interact({
       type: "intent",
-      payload: PropertyPayload,
+      payload: stringifyPayload(PropertyPayload),
     });
   };
 
