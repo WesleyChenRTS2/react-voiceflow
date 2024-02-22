@@ -1,8 +1,7 @@
 const PropertyPayload = {
-  intent: {
-    name: "initialize_property_information",
-  },
-  current_property_details: {
+  intent: { name: "initialize_property_information" },
+  propertyId: 4638,
+  content: {
     UnitID: 4638,
     UnitNumber: "T11993",
     Name: "The Boat House",
@@ -25,14 +24,21 @@ const PropertyPayload = {
     ShowParking: false,
     Parking: null,
   },
-  current_property_description:
+  homeDescription:
     "The kitchen doors open to a dreamy covered porch with panoramic ocean views, perfect for enjoying a tall glass of sweet tea or afternoon cocktail.",
-  current_property_ammenities: [
-    "Charcoal Grill",
-    "Keyless Entry",
-    "No Pets Allowed",
-    "No Smoking",
-    "Wifi",
+  amenities: [
+    "Bath Towels",
+    "Bed Linens",
+    "Pillows & Blankets",
+    "Dishes, Utensils, & Cookware",
+    "Microwave",
+    "Toaster",
+    "Screened Porch",
+    "Beach Chairs",
+    "Central Heat & Air Conditioning",
+    "Outdoor Furniture",
+    "Outdoor Shower",
+    "Private Well",
   ],
 };
 

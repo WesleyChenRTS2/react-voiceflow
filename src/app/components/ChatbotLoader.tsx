@@ -15,7 +15,7 @@ const ChatbotLoader = () => {
   const sendPayload = () => {
     window.voiceflow.chat.interact({
       type: "intent",
-      payload: stringifyPayload(PropertyPayload),
+      payload: PropertyPayload,
     });
   };
 
