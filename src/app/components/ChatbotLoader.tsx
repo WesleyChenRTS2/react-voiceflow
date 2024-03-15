@@ -47,7 +47,7 @@ const ChatbotLoader = () => {
       script.onload = () => {
         scriptLoaded = true; // Set flag to true when script is loaded
         window.voiceflow.chat.load({
-          verify: { projectID: "65d76f980eadd77d8e45bb49" },
+          verify: { projectID: "65de3c5827d6f489a7a0b7fc" },
           url: "https://general-runtime.voiceflow.com",
           versionID: "production",
           autostart: true,
