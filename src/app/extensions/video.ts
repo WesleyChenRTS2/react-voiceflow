@@ -14,7 +14,6 @@ const VideoExtension = {
     iframe.setAttribute("autoplay", "true");
     iframe.setAttribute("controls", "");
     iframe.addEventListener("ended", function () {
-      console.log("it ended");
       window.voiceflow.chat.interact({ type: "complete" });
     });
     element.appendChild(iframe);
