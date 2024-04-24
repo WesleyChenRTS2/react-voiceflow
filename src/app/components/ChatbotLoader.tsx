@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { DOMElement, useEffect } from "react";
+import { FormExtension, VideoExtension } from "../extensions";
 
 import PropertyPayload from "./PropertyDetails";
 
@@ -10,6 +11,7 @@ const stringifyPayload = (payload: any) => {
   }
   return payloadCopy;
 };
+
 const ChatbotLoader = () => {
   // Moved sendPayload outside of useEffect to keep it stable
   const sendPayload = () => {
@@ -47,10 +49,14 @@ const ChatbotLoader = () => {
       script.onload = () => {
         scriptLoaded = true; // Set flag to true when script is loaded
         window.voiceflow.chat.load({
-          verify: { projectID: "65de3c5827d6f489a7a0b7fc" },
+          verify: { projectID: "65fc3f0268f42ebfd841e8d4" },
           url: "https://general-runtime.voiceflow.com",
           versionID: "production",
           autostart: true,
+          assistant: {
+            extensions: [FormExtension, VideoExtension],
+            stylesheet: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
+          },
         });
 
         window.addEventListener("message", handleEvent, false);
