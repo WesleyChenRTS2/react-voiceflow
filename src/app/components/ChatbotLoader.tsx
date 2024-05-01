@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { DOMElement, useEffect } from "react";
+import { FormExtension } from "../extensions";
 
 import PropertyPayload from "./PropertyDetails";
 
@@ -10,6 +11,7 @@ const stringifyPayload = (payload: any) => {
   }
   return payloadCopy;
 };
+
 const ChatbotLoader = () => {
   // Moved sendPayload outside of useEffect to keep it stable
   const sendPayload = () => {
@@ -51,6 +53,10 @@ const ChatbotLoader = () => {
           url: "https://general-runtime.voiceflow.com",
           versionID: "production",
           autostart: true,
+          assistant: {
+            extensions: [FormExtension],
+            stylesheet: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
+          },
         });
 
         window.addEventListener("message", handleEvent, false);
