@@ -11,6 +11,4 @@ type FormPayload = Payload<{
     userPhone?: string
 }>
 
-type VideoPayload = Payload<{src: string}>
-
-export type { Payload, FormPayload, VideoPayload };
+export type { Payload, FormPayload };

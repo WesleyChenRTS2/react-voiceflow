@@ -1,6 +1,6 @@
 "use client";
 import React, { DOMElement, useEffect } from "react";
-import { FormExtension, VideoExtension } from "../extensions";
+import { FormExtension } from "../extensions";
 
 import PropertyPayload from "./PropertyDetails";
 
@@ -54,7 +54,7 @@ const ChatbotLoader = () => {
           versionID: "production",
           autostart: true,
           assistant: {
-            extensions: [FormExtension, VideoExtension],
+            extensions: [FormExtension],
             stylesheet: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
           },
         });

@@ -7,8 +7,6 @@ const FormExtension = {
   render: ({ trace, element }: FormPayload) => {
     const formContainer = document.createElement("form");
 
-    console.log(trace.payload);
-
     formContainer.innerHTML = `
       <style>
       label {
