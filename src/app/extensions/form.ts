@@ -1,11 +1,13 @@
 import { FormPayload } from "./types";
 
 const FormExtension = {
-  name: "Custom_Form",
+  name: "Email_Phone_Form",
   type: "response",
-  match: ({ trace }: FormPayload) => trace.type === "Custom_Form",
+  match: ({ trace }: FormPayload) => trace.type === "Email_Phone_Form",
   render: ({ trace, element }: FormPayload) => {
     const formContainer = document.createElement("form");
+
+    console.log(trace.payload);
 
     formContainer.innerHTML = `
       <style>
@@ -28,6 +30,9 @@ const FormExtension = {
         border-color: red;
       }
       .submit {
+        margin-bottom: 0.5rem;
+      }
+      .submit, .cancel {
         background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
         border: none;
         color: white;
@@ -36,20 +41,39 @@ const FormExtension = {
         width: 100%;
         cursor: pointer;
       }
+
+      button.cancel {
+        background: white;
+        color: #2E7FF1;
+      }
     </style>
       <div class="form-group">
       <label for="email">Email:</label>
       <input value="${
         trace.payload.userEmail || ""
-      }" type="email" class="form-control email" name="email"><br><br>
+      }" type="email" required class="email" name="email"><br><br>
       </div>
       <div class="form-group">
       <label for="phone">Phone Number:</label>
       <input value="${
         trace.payload.userPhone || ""
-      }" type="tel" class="form-control phone" name="phone"><br><br>
+      }" type="tel" required class="phone" name="phone"><br><br>
       <input type="submit" class="submit" value="Submit">
       `;
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.setAttribute("class", "cancel");
+    cancelBtn.innerText = "Cancel";
+
+    cancelBtn.addEventListener("click", function () {
+      formContainer.querySelector(".submit")?.remove();
+      formContainer.querySelector(".cancel")?.remove();
+      window.voiceflow.chat.interact({
+        type: "Cancel",
+      });
+    });
+
+    formContainer.append(cancelBtn);
 
     formContainer.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -59,10 +83,11 @@ const FormExtension = {
       const phone = (formContainer.querySelector(".phone") as HTMLInputElement)
         .value;
 
+      formContainer.querySelector(".cancel")?.remove();
       formContainer.querySelector(".submit")?.remove();
 
       window.voiceflow.chat.interact({
-        type: "complete",
+        type: "Response_Submitted",
         payload: { email, phone },
       });
     });
