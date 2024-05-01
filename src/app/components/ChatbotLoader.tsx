@@ -48,7 +48,7 @@ const ChatbotLoader = () => {
       document.body.appendChild(script);
 
       script.onload = () => {
-        scriptLoaded = true; // Set flag to true when script is loaded
+        scriptLoaded = true; // Set flag to true when script is loaded 
         window.voiceflow.chat.load({
           verify: { projectID: "65de3c5827d6f489a7a0b7fc" },
           url: "https://general-runtime.voiceflow.com",
@@ -56,7 +56,6 @@ const ChatbotLoader = () => {
           autostart: true,
           assistant: {
             extensions: [FormExtension],
-            stylesheet: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
           },
         });
 
