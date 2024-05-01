@@ -44,6 +44,7 @@ const ChatbotLoader = () => {
       script.id = scriptId;
       script.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
       script.async = true;
+      
       document.body.appendChild(script);
 
       script.onload = () => {
