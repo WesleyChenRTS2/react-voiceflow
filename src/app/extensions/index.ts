@@ -1,3 +1,4 @@
 import FormExtension from "./form";
+import CalendarExtension from "./calendar"
 
-export { FormExtension };
+export { FormExtension, CalendarExtension };
