@@ -11,4 +11,13 @@ type FormPayload = Payload<{
     userPhone?: string
 }>
 
-export type { Payload, FormPayload };
+type CalendarPayload = Payload<{
+  dates: {start: Date, end: Date}[],
+  disableButtons?: boolean
+}>
+
+type AvailabilityPayload = Payload<{
+  availability: {start: string, end: string}[]
+}>
+
+export type { Payload, FormPayload, CalendarPayload, AvailabilityPayload };

@@ -1,6 +1,6 @@
 "use client";
 import React, { DOMElement, useEffect } from "react";
-import { FormExtension } from "../extensions";
+import { CalendarExtension, FormExtension } from "../extensions";
 
 import PropertyPayload from "./PropertyDetails";
 
@@ -38,6 +38,11 @@ const ChatbotLoader = () => {
     };
 
     const initializeChatbot = () => {
+      const datePickerScript = document.createElement("script");
+      datePickerScript.setAttribute('src', "https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js")
+      
+      document.head.appendChild(datePickerScript)
+      
       if (document.getElementById(scriptId)) return;
 
       const script = document.createElement("script");
@@ -50,12 +55,13 @@ const ChatbotLoader = () => {
       script.onload = () => {
         scriptLoaded = true; // Set flag to true when script is loaded 
         window.voiceflow.chat.load({
-          verify: { projectID: "65de3c5827d6f489a7a0b7fc" },
+          verify: { projectID: "65fc3f0268f42ebfd841e8d4" },
           url: "https://general-runtime.voiceflow.com",
           versionID: "production",
           autostart: true,
           assistant: {
-            extensions: [FormExtension],
+            extensions: [FormExtension, CalendarExtension],
+            stylesheet: "https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker.min.css"
           },
         });
 
