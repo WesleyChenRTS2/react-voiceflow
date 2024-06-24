@@ -7,7 +7,7 @@ const CalendarExtension = {
   render: ({ trace, element }: CalendarPayload) => {
     const calendarContainer = document.createElement("div");
 
-    const styles = document.createElement("style")
+    const styles = document.createElement("style");
     styles.innerHTML = `
     .btn-container {
         display: flex;
@@ -24,14 +24,21 @@ const CalendarExtension = {
       border-radius: 5px;
       width: 100%;
       cursor: pointer;
+
+    }
+
+    .submit:disabled {
+      cursor: default;
+      background: #808080 !important;
+      color: white;
     }
 
     button.cancel {
       background: white;
       color: #2E7FF1;
-    }`
+    }`;
 
-    calendarContainer.append(styles)
+    calendarContainer.append(styles);
 
     const calendarDiv = document.createElement("div");
 
@@ -39,70 +46,70 @@ const CalendarExtension = {
 
     calendarContainer.appendChild(calendarDiv);
 
-
     // @ts-ignore
     const datepicker = new Datepicker(calendarDiv, {
       // @ts-ignore
       datesDisabled: function (date, viewId, rangeEnd) {
         let dateDisabled = true;
         trace.payload.dates.forEach((d) => {
-            const startDate = new Date(d.start);
-            const endDate = new Date(d.end);
+          const startDate = new Date(d.start);
+          const endDate = new Date(d.end);
           if (
-            (
-              date.getTime() <= endDate.getTime() &&
-              date.getTime() >= startDate.getTime()
-            )
+            date.getTime() <= endDate.getTime() &&
+            date.getTime() >= startDate.getTime()
           ) {
             dateDisabled = false;
           }
         });
         return dateDisabled;
       },
-      maxNumberOfDates: 2,
+      maxNumberOfDates: trace.payload.disableButtons ? 0 : 2,
     });
-
-    datepicker.element.addEventListener("changeDate", () => {
-        if (datepicker.getDate().length !== 2) {
-            submitBtn.disabled = true
-        } else {
-            submitBtn.disabled = false
-        }
-    })
 
     element.append(calendarContainer);
 
-    const btnContainer = document.createElement('div')
-    btnContainer.className = 'btn-container'
+    if (!trace.payload.disableButtons) {
+      const btnContainer = document.createElement("div");
+      btnContainer.className = "btn-container";
 
-    const submitBtn = document.createElement('button');
-    submitBtn.innerText = 'Submit'
-    submitBtn.className = 'submit'
+      const submitBtn = document.createElement("button");
+      submitBtn.innerText = "Submit";
+      submitBtn.className = "submit";
+      submitBtn.disabled = true;
 
-    const cancelBtn = document.createElement('button');
-    cancelBtn.innerText = 'Cancel'
-    cancelBtn.className = 'cancel'
+      const cancelBtn = document.createElement("button");
+      cancelBtn.innerText = "Cancel";
+      cancelBtn.className = "cancel";
 
-    btnContainer.append(submitBtn, cancelBtn)
+      btnContainer.append(submitBtn, cancelBtn);
 
-    element.append(btnContainer)
+      element.append(btnContainer);
 
-    submitBtn.addEventListener('click', function() {
-        submitBtn.disabled = true;
-        cancelBtn.disabled = true;
+      submitBtn.addEventListener("click", function () {
+        submitBtn.remove();
+        cancelBtn.remove();
         window.voiceflow.chat.interact({
-            type: "Response_Submitted",
-            payload: {dates: datepicker.getDate()}
-        })
-    })
+          type: "Response_Submitted",
+          payload: { dates: datepicker.getDate() },
+        });
+      });
 
-    cancelBtn.addEventListener('click', function() {
-        submitBtn.disabled = true;
-        cancelBtn.disabled = true;
+      cancelBtn.addEventListener("click", function () {
+        submitBtn.remove();
+        cancelBtn.remove();
         window.voiceflow.chat.interact({
-            type: "Cancel",
-          });
-    })
+          type: "Cancel",
+        });
+      });
+
+      datepicker.element.addEventListener("changeDate", () => {
+        if (datepicker.getDate().length !== 2) {
+          submitBtn.disabled = true;
+        } else {
+          submitBtn.disabled = false;
+        }
+      });
+    }
   },
 };
 

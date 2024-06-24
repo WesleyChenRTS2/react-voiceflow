@@ -12,7 +12,8 @@ type FormPayload = Payload<{
 }>
 
 type CalendarPayload = Payload<{
-  dates: {start: Date, end: Date}[]
+  dates: {start: Date, end: Date}[],
+  disableButtons?: boolean
 }>
 
 type AvailabilityPayload = Payload<{
