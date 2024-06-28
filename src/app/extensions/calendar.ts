@@ -5,7 +5,6 @@ const CalendarExtension = {
   type: "response",
   match: ({ trace }: CalendarPayload) => trace.type === "Calendar",
   render: ({ trace, element }: CalendarPayload) => {
-    console.log(trace.payload)
     const calendarContainer = document.createElement("div");
 
     const styles = document.createElement("style");
