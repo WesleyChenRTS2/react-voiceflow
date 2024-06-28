@@ -51,7 +51,7 @@ const CalendarExtension = {
       // @ts-ignore
       datesDisabled: function (date, viewId, rangeEnd) {
         let dateDisabled = true;
-        trace.payload.dates.forEach((d) => {
+        trace.payload.dates?.forEach((d) => {
           const startDate = new Date(d.start);
           const endDate = new Date(d.end);
           if (
@@ -64,6 +64,7 @@ const CalendarExtension = {
         return dateDisabled;
       },
       maxNumberOfDates: trace.payload.disableButtons ? 0 : 2,
+      defaultViewDate: trace.payload.startDate && trace.payload.startDate !== "null" ? trace.payload.startDate.replaceAll("-", "/") : new Date()
     });
 
     element.append(calendarContainer);
