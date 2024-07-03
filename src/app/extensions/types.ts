@@ -15,6 +15,7 @@ type CalendarPayload = Payload<{
   dates: {start: Date, end: Date}[],
   disableButtons?: boolean,
   startDate?: string,
+  checkInDay?: string
 }>
 
 type AvailabilityPayload = Payload<{
